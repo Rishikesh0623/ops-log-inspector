@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 load_dotenv()
 LOG_FILE = os.getenv('LOG_FILE', 'simplelog.log')
 app = Flask(__name__)
-
 @app.route('/')
 def home():
     return 'ops-log-inspector is running'
