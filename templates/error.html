@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .error-box {
+            width: 50%;
+            margin: 80px auto;
+            padding: 20px;
+            border: 1px solid #dc3545;
+            background-color: #ffffff;
+            color: #721c24;
+        }
+        h2 {
+            color: #dc3545;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-box">
+        <h2>{{ title }}</h2>
+        <p>{{ message }}</p>
+
+        {% if details %}
+            <ul>
+                {% for key, value in details.items() %}
+                    <li><strong>{{ key }}:</strong> {{ value }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <br>
+        <a href="/upload">Go back</a>
+    </div>
+</body>
+</html>
