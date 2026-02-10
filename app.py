@@ -14,12 +14,17 @@ def health():
     return jsonify({'status': 'ok'})
 
 @app.route('/errors')
-def geterrror():
+def geterror():
     errors = []
+
+    if not os.path.exists(LOG_FILE):
+        return jsonify({"error": "Log file not found", "file": LOG_FILE})
+
     with open(LOG_FILE, 'r') as file:
         for line in file:
             if 'error' in line.lower():
                 errors.append(line.strip())
+
     return jsonify({'count': len(errors), 'errors': errors})
 
 if __name__ == '__main__':
