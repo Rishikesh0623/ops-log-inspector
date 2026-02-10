@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request, render_template
+from log_parser import extract_errors
 from datetime import datetime
 import os
 from dotenv import load_dotenv
@@ -34,7 +35,7 @@ def upload_page():
 @app.route('/analyze', methods=['POST'])
 def analyze_log():
     file = request.files['logfile']
-    errors = []
+    errors = extract_errors(file)
     analysis_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
     for line in file:
