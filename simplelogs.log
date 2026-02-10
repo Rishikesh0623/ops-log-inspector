@@ -3,3 +3,4 @@ error Database connection failed
 info Retrying connection
 error Timeout occurred
 warning Disk usage high
+ERROR Disk failed

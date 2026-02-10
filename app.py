@@ -1,4 +1,8 @@
 from flask import Flask, jsonify
+import os
+from dotenv import load_dotenv
+load_dotenv()
+LOG_FILE = os.getenv('LOG_FILE', 'simplelogs.log')
 app = Flask(__name__)
 
 @app.route('/')
@@ -12,9 +16,9 @@ def health():
 @app.route('/errors')
 def geterrror():
     errors = []
-    with open('simplelogs.log','r') as file:
+    with open(LOG_FILE, 'r') as file:
         for line in file:
-            if 'error' in line:
+            if 'error' in line.lower():
                 errors.append(line.strip())
     return jsonify({'count': len(errors), 'errors': errors})
 
