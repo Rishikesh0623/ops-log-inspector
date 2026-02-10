@@ -39,7 +39,7 @@ def analyze_log():
         decoded_line = line.decode("utf-8")
         if 'error' in decoded_line.lower():
             errors.append(decoded_line.strip())
-    return jsonify({'count': len(errors), 'errors': errors})
+    return render_template('results.html', errors=errors, count=len(errors))
 
 
 if __name__ == '__main__':
