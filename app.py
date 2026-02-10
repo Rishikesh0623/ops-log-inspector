@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request, render_template
+from datetime import datetime
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -34,12 +35,13 @@ def upload_page():
 def analyze_log():
     file = request.files['logfile']
     errors = []
+    analysis_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
     for line in file:
         decoded_line = line.decode("utf-8")
         if 'error' in decoded_line.lower():
             errors.append(decoded_line.strip())
-    return render_template('results.html', errors=errors, count=len(errors))
+    return render_template('results.html', errors=errors, count=len(errors),analysis_time=analysis_time)
 
 
 if __name__ == '__main__':
